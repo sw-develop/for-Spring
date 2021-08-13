@@ -24,7 +24,10 @@ public class Category {
             inverseJoinColumns = @JoinColumn(name = "item_id"))
     private List<Item> items = new ArrayList<>();
 
+    @ManyToOne
+    @JoinColumn(name = "parent_id")
     private Category parent; //부모 카테고리
 
+    @OneToMany(mappedBy = "parent")
     private List<Category> child = new ArrayList<>(); //자식 카테고리
 }
