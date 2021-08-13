@@ -15,11 +15,11 @@ public class OrderItem {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "item_id")
+    @JoinColumn(name = "item_id") //FK - 연관관계 주인
     private Item item;
 
     @ManyToOne
-    @JoinColumn(name = "order_id")
+    @JoinColumn(name = "order_id") //FK - 연관관계 주인
     private Order order;
 
     private int orderPrice; //주문 가격
