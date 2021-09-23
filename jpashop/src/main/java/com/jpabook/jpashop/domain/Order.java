@@ -48,5 +48,4 @@ public class Order {
         this.delivery = delivery;
         delivery.setOrder(this);
     }
-
 }
