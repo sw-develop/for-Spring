@@ -1,7 +1,7 @@
 package jpabook.jpashop.controller;
 
 import java.util.List;
-import jpabook.jpashop.domain.Item.Item;
+import jpabook.jpashop.domain.item.Item;
 import jpabook.jpashop.domain.Member;
 import jpabook.jpashop.domain.Order;
 import jpabook.jpashop.respository.OrderSearch;

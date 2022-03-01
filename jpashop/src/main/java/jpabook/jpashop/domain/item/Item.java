@@ -1,4 +1,4 @@
-package jpabook.jpashop.domain.Item;
+package jpabook.jpashop.domain.item;
 
 import java.util.ArrayList;
 import java.util.List;

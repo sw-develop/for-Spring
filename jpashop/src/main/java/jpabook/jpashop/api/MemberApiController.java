@@ -76,7 +76,6 @@ public class MemberApiController {
     return new UpdateMemberResponse(member.getId(), member.getName());
   }
 
-  /*DTO*/
   @Data
   static class UpdateMemberRequest {
     private String name;

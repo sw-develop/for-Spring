@@ -12,7 +12,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import jpabook.jpashop.domain.Item.Item;
+import jpabook.jpashop.domain.item.Item;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -2,7 +2,7 @@ package jpabook.jpashop.respository;
 
 import java.util.List;
 import javax.persistence.EntityManager;
-import jpabook.jpashop.domain.Item.Item;
+import jpabook.jpashop.domain.item.Item;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
