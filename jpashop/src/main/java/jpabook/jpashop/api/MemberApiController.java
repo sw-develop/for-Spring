@@ -9,9 +9,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -67,7 +67,7 @@ public class MemberApiController {
     return new CreateMemberResponse(id);
   }
 
-  @PutMapping("/api/v2/members/{id}")
+  @PatchMapping("/api/v2/members/{id}")
   public UpdateMemberResponse updateMemberV2(@PathVariable("id") Long id,
       @RequestBody @Valid UpdateMemberRequest request) {
 
