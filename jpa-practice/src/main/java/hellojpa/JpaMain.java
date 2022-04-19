@@ -1,5 +1,7 @@
 package hellojpa;
 
+import hellojpa.item.Book;
+import hellojpa.item.Item;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -15,9 +17,9 @@ public class JpaMain {
     transaction.begin();
 
     try{
-      Member member = new Member();
+      Book newBook = new Book();
 
-      entityManager.persist(member);
+      entityManager.persist(newBook);
 
       transaction.commit();
     } catch (Exception e) {

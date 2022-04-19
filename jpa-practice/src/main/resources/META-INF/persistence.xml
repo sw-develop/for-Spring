@@ -8,7 +8,10 @@
     <class>hellojpa.Category</class>
     <class>hellojpa.Delivery</class>
     <class>hellojpa.DeliveryStatus</class>
-    <class>hellojpa.Item</class>
+    <class>hellojpa.item.Item</class>
+    <class>hellojpa.item.Book</class>
+    <class>hellojpa.item.Album</class>
+    <class>hellojpa.item.Movie</class>
     <class>hellojpa.OrderItem</class>
     <class>hellojpa.OrderStatus</class>
     <properties>
