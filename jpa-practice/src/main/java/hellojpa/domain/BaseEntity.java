@@ -1,4 +1,4 @@
-package hellojpa;
+package hellojpa.domain;
 
 import java.time.LocalDateTime;
 import javax.persistence.MappedSuperclass;

@@ -1,7 +1,6 @@
 package hellojpa;
 
-import hellojpa.item.Book;
-import hellojpa.item.Item;
+import hellojpa.domain.item.Book;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;

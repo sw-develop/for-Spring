@@ -1,9 +1,10 @@
-package hellojpa;
+package hellojpa.domain;
 
-import hellojpa.item.Item;
+import hellojpa.domain.item.Item;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -22,7 +23,7 @@ public class Category {
   @ManyToMany(mappedBy = "categories")
   private List<Item> items = new ArrayList<>();
 
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "category_id")
   private Category parent;
 

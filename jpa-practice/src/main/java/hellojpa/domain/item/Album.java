@@ -1,4 +1,4 @@
-package hellojpa.item;
+package hellojpa.domain.item;
 
 import javax.persistence.Entity;
 

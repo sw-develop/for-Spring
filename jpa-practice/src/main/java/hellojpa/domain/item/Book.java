@@ -1,6 +1,5 @@
-package hellojpa.item;
+package hellojpa.domain.item;
 
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity

@@ -1,10 +1,9 @@
-package hellojpa.item;
+package hellojpa.domain.item;
 
-import hellojpa.Category;
+import hellojpa.domain.Category;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
