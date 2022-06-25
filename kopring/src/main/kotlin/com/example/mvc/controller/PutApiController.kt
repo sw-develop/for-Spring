@@ -1,8 +1,6 @@
 package com.example.mvc.controller
 
 import com.example.mvc.model.http.UserRequest
-import com.example.mvc.model.http.UserResponse
-import com.example.mvc.model.http.Result
 import org.springframework.http.ResponseEntity
 import org.springframework.validation.BindingResult
 import org.springframework.validation.FieldError
