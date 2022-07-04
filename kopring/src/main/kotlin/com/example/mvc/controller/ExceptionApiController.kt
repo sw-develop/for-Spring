@@ -24,9 +24,9 @@ import javax.validation.Valid
 class ExceptionApiController {
 
     @GetMapping("/hello")
-    fun hello() {
+    fun hello(): String {
         val list = mutableListOf<String>()
-        val temp = list[0]
+        return "hello"
     }
 
     @GetMapping("")
@@ -105,7 +105,6 @@ class ExceptionApiController {
         //3. ResponseEntity
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse)
     }
-
 
     @ExceptionHandler(value = [IndexOutOfBoundsException::class])
     fun indexOutOfBoundsException(e: IndexOutOfBoundsException): ResponseEntity<String> {
