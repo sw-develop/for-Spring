@@ -2,11 +2,6 @@ package com.example.mvc.controller
 
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.ExceptionHandler
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestParam
-import org.springframework.web.bind.annotation.RestController
 import javax.servlet.http.HttpServletRequest
 import javax.validation.ConstraintViolationException
 import javax.validation.constraints.Min
@@ -15,8 +10,13 @@ import javax.validation.constraints.Size
 
 import com.example.mvc.model.http.Error
 import com.example.mvc.model.http.ErrorResponse
+import com.example.mvc.model.http.UserRequest
+import org.springframework.validation.FieldError
 import org.springframework.validation.annotation.Validated
+import org.springframework.web.bind.MethodArgumentNotValidException
+import org.springframework.web.bind.annotation.*
 import java.time.LocalDateTime
+import javax.validation.Valid
 
 @RestController
 @RequestMapping("/api/exception")
@@ -43,17 +43,24 @@ class ExceptionApiController {
         return "$name $age"
     }
 
-    @ExceptionHandler(value = [ConstraintViolationException::class])
-    fun constraintValidationException(
-            e: ConstraintViolationException, request: HttpServletRequest
+    @PostMapping("")
+    fun post(@Valid @RequestBody userRequest: UserRequest): UserRequest {
+        println(userRequest)
+        return userRequest
+    }
+
+    @ExceptionHandler(value = [MethodArgumentNotValidException::class])
+    fun methodArgumentNotValidException(
+            e: MethodArgumentNotValidException, request: HttpServletRequest
     ): ResponseEntity<ErrorResponse> {
         val errors = mutableListOf<Error>()
 
-        e.constraintViolations.forEach {
+        e.bindingResult.allErrors.forEach { objectError ->
             val error = Error().apply {
-                this.field = it.propertyPath.last().name
-                this.message = it.message
-                this.value = it.invalidValue
+                val fieldError = objectError as FieldError //형변환
+                this.field = fieldError.field
+                this.message = objectError.defaultMessage
+                this.value = objectError.rejectedValue
             }
             errors.add(error)
         }
@@ -68,6 +75,34 @@ class ExceptionApiController {
             this.errors = errors
         }
 
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse)
+    }
+
+    @ExceptionHandler(value = [ConstraintViolationException::class])
+    fun constraintValidationException(
+            e: ConstraintViolationException, request: HttpServletRequest
+    ): ResponseEntity<ErrorResponse> {
+        val errors = mutableListOf<Error>()
+        //1. Error List
+        e.constraintViolations.forEach {
+            val error = Error().apply {
+                this.field = it.propertyPath.last().name
+                this.message = it.message
+                this.value = it.invalidValue
+            }
+            errors.add(error)
+        }
+        //2. ErrorResponse
+        val errorResponse = ErrorResponse().apply {
+            this.resultCode = "FAIL"
+            this.httpStatus = HttpStatus.BAD_REQUEST.value().toString()
+            this.httpMethod = request.method
+            this.message = "요청에 에러가 발생했습니다."
+            this.path = request.requestURI.toString()
+            this.timestamp = LocalDateTime.now()
+            this.errors = errors
+        }
+        //3. ResponseEntity
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse)
     }
 
